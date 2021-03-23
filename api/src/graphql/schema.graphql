@@ -1,0 +1,19 @@
+scalar ObjectId
+
+interface BaseResponse {
+    message: String!
+    statusCode: Int!
+}
+
+type Query {
+    hello: String
+}
+
+type Mutation {
+    createHello: String
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
