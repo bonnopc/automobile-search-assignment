@@ -1,0 +1,28 @@
+Tasks with ETA (in Hours)
+--------------------------------------
+
+
+====== API =======
+* initial API project setup (with Hapi.js, MongoDB & graphQL) - 2hrs
+* car model & API (CRUD) - 1hr
+* car review model & API (create & read) - 0.5hr
+* seeder - 2hr ***
+
+======= UI ========
+* initial project setup (with React, Redux, Apollo Client, Material UI etc.) - 2.5hrs
+* responsive ui layout & navbar - 1hr
+* landing page & search box ui - 2hrs
+* integrating getCars api - 1hr
+* car list responsive ui - 2hrs
+* car details api integration - 0.5hr
+* car details page, image, meta ui & api - 1.5hrs
+* review api integration - 0.5hr
+* reviews ui - 1hr
+* create review ui - 3hr
+* create review api integration - 0.5hr
+* configuring search & pagination - 2hrs
+* integrate currency conversion api & manage state - 2hrs
+
+
+--------------------------------------
+*** less priority
