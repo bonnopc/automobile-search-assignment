@@ -1,12 +1,14 @@
 import SearchBox from "modules/home/components/SearchBox";
 import { makeStyles } from "@material-ui/core/styles"
 import { useLocation } from "react-router";
+import CarGridView from "./CarGridView";
+import { useEffect } from "react";
 
 const useStyles = makeStyles(theme => ({
     searchContainer: {
         display: "flex",
         justifyContent: "center",
-        
+        marginBottom: "3rem"
     },
     textInput: {
         margin: "0 2rem",
@@ -36,8 +38,16 @@ const useStyles = makeStyles(theme => ({
 export default function CarListComponent(props){
     const classes = useStyles()
     const { search } = useLocation()
-    
     const initialSearchValue = new URLSearchParams(search).get("car")
+
+    useEffect(() => {
+
+    }, [])
+
+    const searchCar = value => {
+        console.log("SEARCH CAR", value)
+        props.actionSearchCar(value,props.car.list)
+    }
 
     return (
         <div>
@@ -48,9 +58,13 @@ export default function CarListComponent(props){
                     type="search"
                     disableHelperText
                     hideSubmitButton
+                    onDebounce={searchCar}
                     className={classes.textInput}
                 />
             </div>
+            <CarGridView
+                items={props.car?.searchResult}
+            />
         </div>
     )
 }

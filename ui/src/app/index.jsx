@@ -11,7 +11,7 @@ function App(props){
     return (
         <Fragment>
             <CssBaseline/>
-            <RehydrationCheckPost {...props}>
+            <RehydrationCheckPost loader={<div>Loading</div>} {...props}>
                 <DefaultLayout>
                     <Switch>
                         {Routes.map((route,i) => (

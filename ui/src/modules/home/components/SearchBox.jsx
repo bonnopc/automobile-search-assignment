@@ -12,11 +12,11 @@ export default function SearchBox({
 }){
     const [value,setValue] = useState(initialValue ? initialValue : "")
 
-    useDebouncedEffect(onDebounce ? () => onDebounce(value) : null,800,[value]);
+    useDebouncedEffect(onDebounce ? 
+        () => onDebounce(value) : () => null,800,[value]);
 
     const handleChange = event => {
         setValue(event.target.value)
-        console.log(event.target.value)
     }
 
     const handleSubmit = event => {

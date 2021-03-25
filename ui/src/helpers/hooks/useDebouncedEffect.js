@@ -5,16 +5,14 @@ const useDebouncedEffect = (effect, delay , deps) => {
     const callback = useCallback(effect, deps);
 
     useEffect(() => {
-        if(effect){
-            const handler = setTimeout(() => {
-                callback();
-            }, delay);
-    
-            return () => {
-                clearTimeout(handler);
-            };
-        }
-    }, [callback, delay, effect]);
+        const handler = setTimeout(() => {
+            callback();
+        }, delay);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [callback, delay]);
 }
 
 export default useDebouncedEffect

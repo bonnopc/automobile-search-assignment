@@ -60,6 +60,10 @@ function NavBar(props) {
         props.history.push("/")
     }
 
+    const goToAddCar = () => {
+        props.history.push("/car/add")
+    }
+
     return (
         <React.Fragment>
             <ElevationScroll {...props}>
@@ -78,6 +82,7 @@ function NavBar(props) {
                         <Spacer/>
                         <Button
                             startIcon={<AddOutlinedIcon/>}
+                            onClick={goToAddCar}
                         >
                             Add A Car
                         </Button>
