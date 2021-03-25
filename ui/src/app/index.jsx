@@ -5,22 +5,25 @@ import { connect } from "react-redux";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import RehydrationCheckPost from "./RehydrationCheckPost";
 import Routes from "routes";
+import DefaultLayout from "layouts/DefaultLayout";
 
 function App(props){
     return (
         <Fragment>
             <CssBaseline/>
             <RehydrationCheckPost {...props}>
-                <Switch>
-                    {Routes.map((route,i) => (
-                        <Route
-                            key={i}
-                            exact={route.exact}
-                            path={route.path}
-                            component={route.component}
-                        />
-                    ))}
-                </Switch>
+                <DefaultLayout>
+                    <Switch>
+                        {Routes.map((route,i) => (
+                            <Route
+                                key={i}
+                                exact={route.exact}
+                                path={route.path}
+                                component={route.component}
+                            />
+                        ))}
+                    </Switch>
+                </DefaultLayout>
             </RehydrationCheckPost>
         </Fragment>
     )

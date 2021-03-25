@@ -12,45 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import { Theme } from 'config';
 import client from 'libs/apolloClient';
 
-const materialTheme = createMuiTheme({
-  	palette: {
-		// type: "dark",
-		primary: {
-			main: Theme.primaryColor
-		},
-		secondary: {
-			main: Theme.secondaryColor
-		},
-		text: {
-			primary: Theme.fontColor
-		},
-		success: {
-			main: Theme.successColor
-		},
-		error: {
-			main: Theme.errorColor
-		},
-		warning: {
-			main: Theme.warningColor
-		}
-	},
-	typography: {
-		fontFamily: Theme.fontFamily,
-		fontSize: Theme.fontSize,
-		body1: {
-			fontSize: Theme.fontSize,
-			"@media (max-width: 960px)": {
-				fontSize: `calc(${Theme.fontSize}px - 2px)`
-			},
-		},
-		body2: {
-			fontSize: Theme.fontSize,
-			"@media (max-width: 960px)": {
-				fontSize: `calc(${Theme.fontSize}px - 2px)`
-			},
-		}
-	}
-});
+const materialTheme = createMuiTheme(Theme);
 
 WebFont.load({
     google: {

@@ -1,41 +1,50 @@
-const theme = {
-    /* COLORS */
-    // primaryColor: "#f36f32",
-    // primaryColor: "#192a56",
-    // primaryColor: "#ffa801",
-    // primaryColor: "#3499b2",
-    primaryColor: "#0356C4",
-    // secondaryColor: "#ffde34",
-    secondaryColor: "#FECC45",
-    //warningColor: "#fed330",
-    warningColor: "#ffa700",
-    errorColor: "#e74d4d",
-    successColor: "#27ae60",
-    fontColor: '#3d3d3d',
-    backgroundColor: '#f0f0f7',
-    appDrawerBgColor: "#43425d",
-    appDrawerActiveLinkColor: "#fecc45",
-    secondaryBackgroundColor: "#ffffff",
-    borderColor: "rgba(0, 0, 0, 0.23)",
-    smBorderColor: "rgba(0, 0, 0, 0.1)",
-    
-    /* FONTS */
-    fontSize: 16,
-    fontFamily: "'Poppins', sans-serif",
-    navHeight: 48,
-    
-    /* GRIDS */
-    smWidth: "961px",
-    mdWidth: "1281px",
-    
-    /* BOX SHADOW */
-    boxShadow: "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
-    smBoxShadow: "0px 1px 2px -0.5px rgba(0,0,0,0.2), 0px 2px 2.5px 0px rgba(0,0,0,0.14), 0px 0.5px 5px 0px rgba(0,0,0,0.12)",
-    
-    /* BORDER RADIUS */
-    borderRadius: "5px",
-    smBorderRadius: "3px",
-    lgBorderRadius: "8px"
-}
+const Theme = {
+	typography: {
+		fontFamily: "'Poppins', sans-serif",
+		fontDisplay: "swap",
+		h1: {
+			fontWeight: 500,
+			fontSize: '6rem'
+		},
+		h2: {
+			fontWeight: 500,
+			fontSize: '4rem'
+		},
+		body1: {
+			fontSize: 14,
+			"@media (min-width: 960px)": {
+				fontSize: 16
+			},
+		},
+        body2: {
+			fontSize: 14,
+			"@media (min-width: 960px)": {
+				fontSize: 16
+			},
+		},
+	},
+	palette: {
+		primary: {
+			// main: '#2c689d',
+			main: '#0779e4',
+		},
+		secondary: {
+			main: '#77d8d8',
+		},
+		error: {
+			main: '#e66767',
+		},
+		success: {
+			main: '#3aaf00'
+		},
+		background: {
+            default: '#f2f2f2',
+            paper: "#fff"
+		},
+		text: {
+			primary: "#333333"
+		}
+	},
+};
 
-export default theme
+export default Theme;
