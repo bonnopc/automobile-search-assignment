@@ -1,4 +1,16 @@
 const Theme = {
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                html: {
+                    WebkitFontSmoothing: 'auto',
+                },
+                [`*, :after, :before`]: {
+                    boxSizing: "border-box"
+                }
+            },
+        },
+    },
 	typography: {
 		fontFamily: "'Poppins', sans-serif",
 		fontDisplay: "swap",

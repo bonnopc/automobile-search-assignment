@@ -2,19 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from "@material-ui/core/styles"
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
-import { useLocation } from 'react-router';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+
 import Spacer from './Spacer';
+import { withRouter } from 'react-router';
+
+export const NavHeight = 48
 
 const useStyles = makeStyles(theme => ({
+    appBar: {
+        height: NavHeight
+    },
     toolbar: {
         width: "100%",
         paddingLeft: "1rem",
         paddingRight: "1rem",
+        minHeight: NavHeight,
 
         ...NavBar.getContainerStyles(theme)
     }
@@ -45,16 +53,28 @@ ElevationScroll.propTypes = {
     window: PropTypes.func,
 };
 
-export default function NavBar(props) {
+function NavBar(props) {
     const classes = useStyles()
+
+    const goToHome = () => {
+        props.history.push("/")
+    }
 
     return (
         <React.Fragment>
             <ElevationScroll {...props}>
                 <AppBar
                     color="default"
+                    className={classes.appBar}
                 >
                     <Toolbar className={classes.toolbar}>
+                        {props.location.pathname !== "/" && (
+                            <IconButton
+                                onClick={goToHome}
+                            >
+                                <SearchOutlinedIcon/>
+                            </IconButton>
+                        )}
                         <Spacer/>
                         <Button
                             startIcon={<AddOutlinedIcon/>}
@@ -80,3 +100,5 @@ NavBar.getContainerStyles = theme => ({
         maxWidth: 1170
     }
 });
+
+export default withRouter(NavBar)
