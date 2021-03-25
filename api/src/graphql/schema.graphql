@@ -5,12 +5,35 @@ interface BaseResponse {
     statusCode: Int!
 }
 
+type Car {
+    uid: String,
+    name: String,
+    price: Float
+}
+
+input CarInput {
+    name: String!,
+    price: Float!
+}
+
+type CarResponse implements BaseResponse {
+    statusCode: Int!,
+    message: String!,
+    result: Car
+}
+
+type CarsResponse implements BaseResponse {
+    statusCode: Int!
+    message: String!
+    result: [Car]
+}
+
 type Query {
-    hello: String
+    cars: CarsResponse
 }
 
 type Mutation {
-    createHello: String
+    createCar (car: CarInput!): CarResponse
 }
 
 schema {
