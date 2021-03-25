@@ -49,6 +49,7 @@ export default function CarSummaryCard({
                 <Rating 
                     name="read-only" 
                     value={rating} 
+                    size="small"
                     readOnly 
                 />
             </CardActions>
