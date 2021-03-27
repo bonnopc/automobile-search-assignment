@@ -10,7 +10,8 @@ import App from 'app';
 import configureStore from "./store"
 import reportWebVitals from './reportWebVitals';
 import { Theme } from 'config';
-import client from 'libs/apolloClient';
+// import client from 'libs/apolloClient';
+import createApolloClient from 'libs/apolloClient';
 
 const materialTheme = createMuiTheme(Theme);
 
@@ -21,6 +22,7 @@ WebFont.load({
 });
 
 const { store } = configureStore();
+const client = createApolloClient()
 
 ReactDOM.render(
 	<Provider store={store}>

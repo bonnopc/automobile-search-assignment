@@ -5,9 +5,6 @@ export default (errorEnum = 'INPUT ERROR', sc = 400) => {
         case 'DATA_NOT_FOUND':
             statusCode = 404;
             break;
-        case 'GAME_ALREADY_FINISHED':
-            statusCode = 423;
-            break;
         case 'NOT_ACCEPTABLE':
             statusCode = 406;
             break;

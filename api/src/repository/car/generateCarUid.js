@@ -1,4 +1,4 @@
-import { CarModel } from '../model';
+import { CarModel } from '../../model';
 
 export default async () => {
     try {

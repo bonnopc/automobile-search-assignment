@@ -41,7 +41,7 @@ export default function CarListComponent(props){
     const initialSearchValue = new URLSearchParams(search).get("car")
 
     useEffect(() => {
-
+        if(initialSearchValue) searchCar()
     }, [])
 
     const searchCar = value => {
