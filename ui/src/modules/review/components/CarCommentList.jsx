@@ -6,8 +6,8 @@ import Rating from '@material-ui/lab/Rating';
 import PageHeader from "modules/common/components/PageHeader";
 import { Button } from "@material-ui/core";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
-import { Fragment, useState } from "react";
-import CommonDialog from "modules/common/components/CommonDialog";
+import { Fragment, useEffect, useState } from "react";
+import CreateReview from "./CreateReview";
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,42 +45,64 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-function Comment({ classes, rating }){
+function Comment({ classes, review }){
     return (
         <div className={classes.commentRoot}>
             <div className={classes.metaRoot}>
                 <Avatar
                     className={classes.avatar}
-                >P</Avatar>
+                >{review.name.substr(0, 1).toUpperCase()}</Avatar>
                 <Typography
                     component="p"
                     variant="caption"
                     className={classes.participantName}
                 >
-                    Prosenjit Chowdhury
+                    {review.name}
                 </Typography>
-                {rating ? (
+                {review.rating ? (
                     <Rating 
                         name="read-only" 
-                        value={rating} 
+                        value={review.rating} 
                         size="small"
                         readOnly 
                     />
                 ) : ""}
             </div>
             <div>
-                This is Comment
+                {review.comment}
             </div>
         </div>
     )
 }
 
-export default function CarCommentList(props){
+export default function CarCommentList({ carUid, ...restProps }){
     const classes = useStyles()
     const [ isOpenAddReviewDialog, setOepnReviewDialog ] = useState(false)
+    const [ reviews, setReviews ] = useState([])
+
+    const getReviews = async carUid => {
+        console.log("", carUid)
+        const _reviews = await restProps.actionGetCommentsByCarUid(carUid);
+
+        if(_reviews) setReviews(_reviews)
+    }
+
+    useEffect(() => {
+        if(carUid) getReviews(carUid)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [carUid])
 
     const closeDialog = () => {
         setOepnReviewDialog(false)
+    }
+
+    const openCreateDialog = () => {
+        if(carUid) setOepnReviewDialog(true)
+    }
+
+    const addReviewAfterCreate = review => {
+        closeDialog()
+        setReviews(revs => [...revs, review])
     }
 
     return (
@@ -94,7 +116,7 @@ export default function CarCommentList(props){
                             startIcon={<AddOutlinedIcon/>}
                             variant="outlined"
                             size="small"
-                            onClick={() => setOepnReviewDialog(true)}
+                            onClick={openCreateDialog}
                         >
                             Add a review
                         </Button>
@@ -103,43 +125,22 @@ export default function CarCommentList(props){
                     Reviews
                 </PageHeader>
                 <div>
-                    {[1,2,3,4].map(i => (
+                    { reviews?.length ? reviews.map((review,i) => (
                         <Comment
                             key={i}
                             rating={i % 2 ? 3 : null}
                             classes={classes}
+                            review={review}
                         />
-                    ))}
+                    )) : "Be the first one to review"}
                 </div>
             </CommonCard>
-            <CommonDialog
+            <CreateReview
+                carUid={carUid}
                 isOpen={isOpenAddReviewDialog}
+                onCreate={addReviewAfterCreate}
                 onClose={closeDialog}
-                header="Add a Review"
-                content={(
-                    <div>
-                        Add a reviiew
-                    </div>
-                )}
-                footer={(
-                    <Fragment>
-                        <Button
-                            size="large"
-                            color="primary"
-                            onClick={closeDialog}
-                        >
-                            Cancel
-                        </Button>
-                        {/* <Button
-                            size="large"
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                        >
-                            Submit
-                        </Button> */}
-                    </Fragment>
-                )}
+                {...restProps}
             />
         </Fragment>
     )

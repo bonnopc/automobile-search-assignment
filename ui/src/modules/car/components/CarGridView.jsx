@@ -24,10 +24,7 @@ export default function CarGridView({
                     key={i}
                 >
                     <CarSummaryCard
-                        uid={item.uid}
-                        title={item.name}
-                        description={item.description}
-                        rating={i % 2 ? 3 : null}
+                        {...item}
                         onClick={handleCardClick}
                     />
                 </Grid>

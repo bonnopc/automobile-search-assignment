@@ -17,10 +17,8 @@ const useStyles = makeStyles({
     },
 });
 
-const PHOTO_URL = "https://www.pngkey.com/png/detail/99-996330_black-and-white-girl-driving-a-car-clip.png"
-
 export default function CarSummaryCard({
-    title, description, imageUrl, imageName, rating, onClick, uid
+    name, description, image, rating, onClick, uid
 }) {
     const classes = useStyles();
 
@@ -31,12 +29,12 @@ export default function CarSummaryCard({
             >
                 <CardMedia
                     className={classes.media}
-                    image={imageUrl ?? PHOTO_URL}
-                    title={imageName ?? imageName}
+                    image={image}
+                    title={name ?? "Car"}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        { title }
+                        { name }
                     </Typography>
                     {description ? (
                         <Typography variant="body2" color="textSecondary" component="p">

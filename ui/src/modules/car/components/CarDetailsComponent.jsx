@@ -5,9 +5,9 @@ import { useParams } from "react-router"
 import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Rating from '@material-ui/lab/Rating';
-import CarCommentList from "./CarCommentList"
 import Box from '@material-ui/core/Box';
 import InlineLoader from "modules/common/components/InlineLoader"
+import CarCommentsContainer from "modules/review/containers/CarCommentsContainer"
 
 const useStyles = makeStyles({
     imgContainer: {
@@ -29,8 +29,6 @@ const useStyles = makeStyles({
         alignItems: "center"
     }
 })
-
-const PHOTO_URL = "https://www.pngkey.com/png/detail/99-996330_black-and-white-girl-driving-a-car-clip.png"
 
 function CarMeta({
     car
@@ -83,6 +81,7 @@ export default function CarDetailsComponent(props){
 
     useEffect(() => {
         if(uid) getCar(uid)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [uid])
 
     return (
@@ -102,7 +101,11 @@ export default function CarDetailsComponent(props){
                     />
                 }
             </CommonCard>
-            <CarCommentList/>
+            
+            <CarCommentsContainer
+                carUid={_car.uid}
+                carName={_car.name}
+            />
         </Fragment>
     )
 }

@@ -1,29 +1,11 @@
 import CommonCard from "modules/common/components/CommonCard";
 import CommonTextField from "modules/common/components/CommonTextField";
 import PageHeader from "modules/common/components/PageHeader";
-import { makeStyles } from "@material-ui/core/styles"
 import { Component } from "react";
 import Button from "@material-ui/core/Button";
 import ImageInput from "modules/common/components/ImageInput";
 import { withRouter } from "react-router";
-
-const useStyles = makeStyles(theme => ({
-    formRoot: {
-        [theme.breakpoints.up("sm")]: {
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: "30rem"
-        }
-    },
-    input: {
-        marginTop: "1rem"
-    }
-}))
-
-function StyledForm({ children }){
-    const classes = useStyles()
-    return children(classes)
-}
+import StyledForm from "modules/common/styledComponents./StyledForm";
 
 class AddCarComponent extends Component{
     state = {
@@ -68,7 +50,6 @@ class AddCarComponent extends Component{
         const requiredInputs = ['name','price','image']
 
         requiredInputs.forEach(key => {
-            console.log("this.state.car[key]", this.state.car[key])
             if(!this.state.car[key]){
                 isValid = false
                 currErrors[key] = "This is required!"
@@ -92,30 +73,6 @@ class AddCarComponent extends Component{
             carError: currErrors
         })
     }
-
-    // handleFileUpload({
-    //     target: {
-    //         validity,
-    //         files: [file],
-    //     },
-    // }){
-    //     if(validity.valid){
-    //         const currCarInputs = Object.assign({}, this.state.car),
-    //         currErrors = Object.assign({}, this.state.carError);
-
-    //         currCarInputs.image = file
-    //         currErrors.image = ""
-
-    //         console.log({file})
-            
-    //         if(file){
-    //             this.setState({
-    //                 car: currCarInputs,
-    //                 carError: currErrors
-    //             })
-    //         }
-    //     }
-    // }
 
     render(){
         const { car, carError } = this.state
