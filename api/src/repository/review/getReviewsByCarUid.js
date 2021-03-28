@@ -6,8 +6,6 @@ export default async (req,res) => {
         const { carUid } = req.params;
         const carsData = await ReviewModel.find({ carUid });
 
-        console.log("carsData", carsData)
-
         if(carsData.length) return res.status(200).json(sendResponse(carsData));
         
         return res.status(404).json(sendErrorResponse("DATA_NOT_FOUND"))
