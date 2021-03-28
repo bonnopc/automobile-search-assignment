@@ -4,7 +4,7 @@ This project contains both API server and UI application. You can find API proje
 
 
 ## Start dev server
-Please run the below command to run both API and UI server.
+Please enter the commands below to run both API and UI server.
 ```
 cd api
 cp .env.example .env
@@ -17,8 +17,7 @@ cp .env.example .env
 npm start
 ```
 
-Or, you can open enter below command in two different terminals.
-
+Or, you can enter these two commands in two different terminals.
 
 ```
 sh start_dev_server.sh
