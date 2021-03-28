@@ -33,7 +33,7 @@ const startServer = async () => {
             extended: true
         }));
         app.use(cors()); 
-        app.use('/static', express.static('src'))
+        app.use('/public/uploads', express.static('public/uploads'))
         
 
         // ROUTES
