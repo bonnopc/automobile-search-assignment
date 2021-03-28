@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
+import Grid from '@material-ui/core/Grid';
+import getPriceByCurrency from 'helpers/getPriceByCurrency';
 
 const useStyles = makeStyles({
     root: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 export default function CarSummaryCard({
-    name, description, image, rating, onClick, uid
+    name, description, image, rating, onClick, uid, price, currency, app
 }) {
     const classes = useStyles();
 
@@ -33,9 +35,18 @@ export default function CarSummaryCard({
                     title={name ?? "Car"}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        { name }
-                    </Typography>
+                    <Grid container>
+                        <Grid item xs={8}>
+                            <Typography gutterBottom color="primary" variant="h5" component="h2">
+                                { name }
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography align="right" gutterBottom variant="body2" component="h4">
+                                { app.currency ?? "USD" } { getPriceByCurrency(price,app.currency,app.rates) }
+                            </Typography>
+                        </Grid>
+                    </Grid>
                     {description ? (
                         <Typography variant="body2" color="textSecondary" component="p">
                             { description }

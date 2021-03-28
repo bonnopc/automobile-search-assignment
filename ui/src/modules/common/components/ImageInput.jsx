@@ -2,6 +2,7 @@ import ButtonBase from "@material-ui/core/ButtonBase"
 import { makeStyles } from "@material-ui/core/styles"
 import { useRef } from "react"
 import FormHelperText from '@material-ui/core/FormHelperText';
+import isValidURL from "helpers/isValidUrl";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -57,12 +58,13 @@ export default function ImageInput({
         <ButtonBase 
             className={`${classes.root} ${className ?? ""} ${errorText ? 'error' : ''}`}
             onClick={openFileExplorer}
+            type="button"
         >
             
 
             {   value ?
                 <img
-                    src={URL.createObjectURL(value)}
+                    src={isValidURL ? value : URL.createObjectURL(value)}
                     className={classes.imgPreview}
                     alt="uploaded file"
                 /> : 
@@ -79,7 +81,6 @@ export default function ImageInput({
             <input 
                 type="file" 
                 accept="image/x-png,image/jpeg"
-                required={required}
                 className={classes.hidden}
                 ref={InputRef}
                 onChange={handleFileChange}

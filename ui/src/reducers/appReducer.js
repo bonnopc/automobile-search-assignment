@@ -1,4 +1,4 @@
-import { HIDE_SNACKBAR_MESSAGE, SHOW_SNACKBAR_MESSAGE } from "./constants"
+import { HIDE_SNACKBAR_MESSAGE, SET_CURRENCY, SET_CURRENCY_RATES, SHOW_SNACKBAR_MESSAGE } from "./constants"
 
 const initialState = {
     snackbar: {
@@ -6,6 +6,8 @@ const initialState = {
         type: "",
         secondaryMessage: ""
     },
+    currency: "USD",
+    rates: {}
 }
 
 const appReducer = (state = initialState, { type, payload }) => {
@@ -16,6 +18,12 @@ const appReducer = (state = initialState, { type, payload }) => {
 
         case HIDE_SNACKBAR_MESSAGE:
             return { ...state, snackbar: { message: "", type: "", secondaryMessage: "" } }
+        
+        case SET_CURRENCY:
+            return { ...state, currency: payload }
+
+        case SET_CURRENCY_RATES:
+            return { ...state, rates: payload }
     
         default:
             return state

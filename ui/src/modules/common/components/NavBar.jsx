@@ -11,6 +11,7 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 import Spacer from './Spacer';
 import { withRouter } from 'react-router';
+import CurrencyConverterDropdown from './CurrencyConverterDropdown';
 
 export const NavHeight = 48
 
@@ -81,6 +82,9 @@ function NavBar(props) {
                             </IconButton>
                         )}
                         <Spacer/>
+                        <CurrencyConverterDropdown
+                            {...props}
+                        />
                         <Button
                             startIcon={<AddOutlinedIcon/>}
                             onClick={goToAddCar}

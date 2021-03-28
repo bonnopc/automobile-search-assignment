@@ -20,6 +20,11 @@ const Routes = [
         component: AddCarContainer
     },
     {
+        path: "/car/update/:uid",
+        exact: true,
+        component: AddCarContainer
+    },
+    {
         path: "/car/:uid",
         exact: true,
         component: CarDetailsContainer

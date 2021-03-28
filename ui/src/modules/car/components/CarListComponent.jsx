@@ -67,6 +67,7 @@ export default function CarListComponent(props){
                 props.car?.searchResult?.length ?
                     <CarGridView
                         items={props.car?.searchResult}
+                        app={props.app}
                     /> :
                     <NoCarFound
                         searchValue={searchValue}

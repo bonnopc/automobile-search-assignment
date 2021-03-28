@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import CarSummaryCard from "./CarSummaryCard"
 
 export default function CarGridView({
-    items
+    items, app
 }){
     const history = useHistory()
 
@@ -25,6 +25,7 @@ export default function CarGridView({
                 >
                     <CarSummaryCard
                         {...item}
+                        app={app}
                         onClick={handleCardClick}
                     />
                 </Grid>

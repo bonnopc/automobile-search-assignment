@@ -9,6 +9,8 @@ import ConnectToMongoDb from './mongodbServer';
 import createCar from '../repository/car/createCar';
 import getCars from '../repository/car/getCars';
 import getCarByUid from '../repository/car/getCarByUid';
+import createReview from '../repository/car/createReview';
+import getReviewsByCarUid from '../repository/car/getReviewsByCarUid';
 
 const EXT_RE = /(\.[_\-a-zA-Z0-9]{0,16}).*/g;
 const UPLOAD_DIRECTORY = "./public/uploads";
@@ -38,6 +40,8 @@ const startServer = async () => {
 
         // ROUTES
         app.post('/api/car/create', multipartMiddleware, createCar);
+        app.post('/api/review/create', createReview);
+        app.get('/api/reviews/:carUid', getReviewsByCarUid);
         app.get('/api/cars', getCars);
         app.get('/api/car/:uid', getCarByUid);
 

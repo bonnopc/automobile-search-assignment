@@ -23,15 +23,44 @@ class AddCarComponent extends Component{
         }
     }
 
+    componentDidMount(){
+        if(this.isUpdating()) this.getCarDetails()
+    }
+
+    isUpdating(){
+        const { uid } = this.props.match.params
+
+        return uid;
+    }
+
+    async getCarDetails(){
+        const { uid } = this.props.match.params
+
+        const _car = await this.props.actionGetCarByUid(uid)
+
+        if(_car){
+            const { name, price, image, description } = _car
+
+            this.setState({
+                car: { name, price, image, description }
+            })
+        }
+    }
+
     async submitForm(event){
+        console.log("preventDefault")
         if(event) event.preventDefault()
+        console.log("submitForm")
         if(this.isValidForm()){
-            const response = await this.props.actionCreateCar(this.state.car)
+            const { uid } = this.props.match.params;
+            const response = this.isUpdating() ?
+                await this.props.actionUpdateCar({...this.state.car, uid }) :
+                await this.props.actionCreateCar(this.state.car)
 
             if(response?.uid){
                 this.props.actionShowSnackbar({
-                    message: "Car added successfully!",
-                    secondaryMessage: "Congratulations! You car has been added to our list.",
+                    message: `Car ${this.isUpdating() ? "updated": "added"} successfully!`,
+                    secondaryMessage: `Congratulations! You car has been ${this.isUpdating() ? "updated": "added to our list"}.`,
                     type: "success"
                 })
                 this.props.history.push(`/car/${response.uid}`)
@@ -58,6 +87,8 @@ class AddCarComponent extends Component{
 
         if(!isValid) this.setState({ carError: currErrors })
 
+        console.log("isValid", isValid)
+
         return isValid
     }
 
@@ -82,7 +113,7 @@ class AddCarComponent extends Component{
                 { classes=> (
                     <CommonCard>
                         <PageHeader hasBack>
-                            Add Car
+                            {this.isUpdating() ? "Update" : "Add"} Car
                         </PageHeader>
                         <form 
                             className={classes.formRoot}

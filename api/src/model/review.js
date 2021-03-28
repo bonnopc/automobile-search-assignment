@@ -2,27 +2,19 @@ import Mongoose from 'mongoose';
 
 const Schema = Mongoose.Schema;
 
-const CarSchema = new Schema({
-    uid: {
+const ReviewSchema = new Schema({
+    carUid: {
         type: String,
         required: true,
-        unique: true,
         trim: true
+    },
+    comment: {
+        type: String,
+        required: true,
     },
     name: {
         type: String,
         required: true,
-    },
-    image: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
-    },
-    price: {
-        type: Number,
-        required: true
     },
     rating: {
         type: Number,
@@ -34,4 +26,4 @@ const CarSchema = new Schema({
     versionKey: false
 });
 
-export default Mongoose.model('Car', CarSchema);
+export default Mongoose.model('Review', ReviewSchema);

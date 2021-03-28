@@ -103,6 +103,7 @@ export default function CarCommentList({ carUid, ...restProps }){
     const addReviewAfterCreate = review => {
         closeDialog()
         setReviews(revs => [...revs, review])
+        restProps.actionGetCars()
     }
 
     return (

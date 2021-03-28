@@ -67,6 +67,7 @@ export default function PageHeader({ children, withCard, hasBack, onBack, rightB
                         hasBack ? 
                         <IconButton
                             color="primary"
+                            type="button"
                             onClick={goBack} 
                             className={classes.backBtn}>
                             <ChevronLeftIcon className={classes.icon}/>

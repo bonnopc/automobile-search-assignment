@@ -3,7 +3,6 @@ import { CarModel } from "../../model";
 import generateCarUid from "./generateCarUid";
 
 export default async (req, res) => {
-    console.log("req CREATE CAR", req)
     try {
         const { image } = req.files;
         const { name, price, description } = req.body
@@ -20,8 +19,6 @@ export default async (req, res) => {
             }
 
             const _carData = await CarModel.create(result)
-
-            console.log("result==============>", _carData)
 
             return res.status(200).json(sendResponse(_carData));
             

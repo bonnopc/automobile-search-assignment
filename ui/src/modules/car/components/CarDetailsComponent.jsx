@@ -1,13 +1,17 @@
 import CommonCard from "modules/common/components/CommonCard"
 import PageHeader from "modules/common/components/PageHeader"
 import { Fragment, useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useHistory, useParams } from "react-router"
 import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import InlineLoader from "modules/common/components/InlineLoader"
 import CarCommentsContainer from "modules/review/containers/CarCommentsContainer"
+import Grid from "@material-ui/core/Grid"
+import IconButton from "@material-ui/core/IconButton"
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 
 const useStyles = makeStyles({
     imgContainer: {
@@ -27,13 +31,23 @@ const useStyles = makeStyles({
     ratingContainer: {
         display: "flex",
         alignItems: "center"
+    },
+    actions: {
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center"
     }
 })
 
 function CarMeta({
-    car
+    car, 
 }){
     const classes = useStyles()
+    const history = useHistory()
+
+    const goToEditCarPage = () => {
+        history.push(`/car/update/${car.uid}`)
+    }
 
     return (
         <Fragment>
@@ -44,23 +58,52 @@ function CarMeta({
                     className={classes.img}
                 />
             </div>
-            <Typography
-                variant="h4"
-                component="h4"
-                color="primary"
-                gutterBottom
-            >
-                { car.name }
-            </Typography>
-            <div className={classes.ratingContainer}>
-                <Rating 
-                    name="read-only" 
-                    precision={0.5}
-                    value={3.5} 
-                    readOnly 
-                />
-                <Box ml={2}>{3.5}</Box>
-            </div>
+            <Grid container>
+                <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={8}
+                >
+                    <Typography
+                        variant="h4"
+                        component="h4"
+                        color="primary"
+                        gutterBottom
+                    >
+                        { car.name }
+                    </Typography>
+                    <div className={classes.ratingContainer}>
+                        <Rating 
+                            name="read-only" 
+                            precision={0.5}
+                            value={car.rating} 
+                            readOnly 
+                        />
+                        {car.rating ? <Box ml={2}>{car.rating}</Box> : ""}
+                    </div>
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    className={classes.actions}
+                >
+                    <IconButton
+                        size="medium"
+                        onClick={goToEditCarPage}
+                    >
+                        <EditOutlinedIcon/>
+                    </IconButton>
+                    <IconButton
+                        size="medium"
+                    >
+                        <CloseOutlinedIcon/>
+                    </IconButton>
+                </Grid>
+            </Grid>
+            
             <p>{ car.description }</p>
         </Fragment>
     )

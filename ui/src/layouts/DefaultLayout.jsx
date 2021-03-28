@@ -29,7 +29,7 @@ export default function DefaultLayout({ children, ...restProps }){
 
     return (
         <div className={classes.root}>
-            <NavBar/>
+            <NavBar {...restProps}/>
             <CommonSnackBar {...restProps} />
             <div className={classes.container}>
                 { children }
