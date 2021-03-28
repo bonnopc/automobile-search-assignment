@@ -75,6 +75,7 @@ function NavBar(props) {
                         {props.location.pathname !== "/" && (
                             <IconButton
                                 onClick={goToHome}
+                                color="primary"
                             >
                                 <SearchOutlinedIcon/>
                             </IconButton>
@@ -83,6 +84,7 @@ function NavBar(props) {
                         <Button
                             startIcon={<AddOutlinedIcon/>}
                             onClick={goToAddCar}
+                            color="primary"
                         >
                             Add A Car
                         </Button>
