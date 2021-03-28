@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function NoCarFound(props){
+export default function NoCarFound({ searchValue }){
     const classes = useStyles()
     const history = useHistory()
 
@@ -38,13 +38,15 @@ export default function NoCarFound(props){
             <Typography
                 variant="h4"
                 component="h3"
+                align="center"
                 color="textSecondary"
             >No Car Found!</Typography>
             <Typography
                 variant="h5"
                 component="h3"
+                align="center"
                 color="textSecondary"
-            >Try searching another keyword.</Typography>
+            >{ searchValue ? `We can't find any car named '${searchValue}'.` : "Try searching by a keyword." }</Typography>
 
             <Typography
                 variant="body1"

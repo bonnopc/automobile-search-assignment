@@ -60,6 +60,7 @@ export default function HomeComponent(props){
     } 
 
     useEffect(() => {
+        props.actionResetSearchResult()
         getCars()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

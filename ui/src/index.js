@@ -4,15 +4,12 @@ import { Provider } from "react-redux"
 import { BrowserRouter as Router } from "react-router-dom"
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import WebFont from 'webfontloader';
-import { ApolloProvider } from "@apollo/client"
 
 import App from 'app';
 import configureStore from "./store"
 import reportWebVitals from './reportWebVitals';
 import { Theme } from 'config';
 // import client from 'libs/apolloClient';
-import createApolloClient from 'libs/apolloClient';
-
 const materialTheme = createMuiTheme(Theme);
 
 WebFont.load({
@@ -22,18 +19,15 @@ WebFont.load({
 });
 
 const { store } = configureStore();
-const client = createApolloClient()
 
 ReactDOM.render(
 	<Provider store={store}>
 		<MuiThemeProvider theme={materialTheme}>
-			<ApolloProvider client={client}>
-				<Router>
-					<React.StrictMode>
-						<App />
-					</React.StrictMode>
-				</Router>
-			</ApolloProvider>
+			<Router>
+				<React.StrictMode>
+					<App />
+				</React.StrictMode>
+			</Router>
 		</MuiThemeProvider>
 	</Provider>,
 	document.getElementById('root')

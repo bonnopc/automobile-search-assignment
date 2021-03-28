@@ -3,7 +3,6 @@ import React from "react"
 import { useCallback } from "react";
 import { useHistory } from "react-router";
 import CarSummaryCard from "./CarSummaryCard"
-import NoCarFound from "./NoCarFound"
 
 export default function CarGridView({
     items
@@ -13,8 +12,6 @@ export default function CarGridView({
     const handleCardClick = useCallback(uid => {
         history.push(`/car/${uid}`)
     }, [history])
-
-    if(!items || !items.length) return <NoCarFound/>;
 
     return (
         <Grid container spacing={3}>

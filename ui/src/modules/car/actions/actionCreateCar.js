@@ -1,26 +1,20 @@
-import apolloClient from "libs/apolloClient"
-import createCar from "../gql/createCar"
+import ApiClient from "libs/apiClient";
 
 const actionCreateCar = car => async dispatch => {
     try {
-        console.log({ car })
-        const { image, ...restInfo } = car
 
-        console.log({ image })
+        const formData = new FormData();
 
-
-        const createResponse = await apolloClient.mutate({
-            mutation: createCar,
-            context: {
-                hasUpload: true
-            },
-            variables: { 
-                car: restInfo,
-                image 
-            }
+        Object.keys(car).forEach(key => {
+            formData.append(key, car[key])
         })
 
-        console.log("createResponse", createResponse)
+        const createResponse = await ApiClient('/car/create', {
+            method: "post",
+            body: formData,
+        }).then(res => res.result)
+
+        return createResponse
     } catch (error) {
         console.error("Error in actionCreateCar", error)
     }

@@ -1,4 +1,4 @@
-import { SET_CARS, TOGGLE_CAR_SEARCH_LOADER, SET_SEARCH_RESULT } from "./constants"
+import { SET_CARS, TOGGLE_CAR_SEARCH_LOADER, SET_SEARCH_RESULT, RESET_SEARCH_RESULT } from "./constants"
 
 const initialState = {
     list: [],
@@ -15,7 +15,10 @@ const carReducer = (state = initialState, { type, payload }) => {
             return { ...state, isLoading: typeof payload !== "undefined" ? payload : !state.isLoading }
 
         case SET_SEARCH_RESULT:
-            return { ...state, searchResult: payload }
+            return { ...state, searchResult: payload, isLoading: false }
+
+        case RESET_SEARCH_RESULT:
+            return { ...state, searchResult: [] }
    
         default:
             return state

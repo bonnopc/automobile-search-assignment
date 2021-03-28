@@ -2,7 +2,8 @@ import SearchBox from "modules/home/components/SearchBox";
 import { makeStyles } from "@material-ui/core/styles"
 import { useLocation } from "react-router";
 import CarGridView from "./CarGridView";
-import { useEffect } from "react";
+import { useState } from "react";
+import NoCarFound from "./NoCarFound";
 
 const useStyles = makeStyles(theme => ({
     searchContainer: {
@@ -38,14 +39,12 @@ const useStyles = makeStyles(theme => ({
 export default function CarListComponent(props){
     const classes = useStyles()
     const { search } = useLocation()
-    const initialSearchValue = new URLSearchParams(search).get("car")
-
-    useEffect(() => {
-        if(initialSearchValue) searchCar()
-    }, [])
+    const initialSearchValue = new URLSearchParams(search).get("car");
+    const [ searchValue, setSearchValue ] = useState(initialSearchValue);
 
     const searchCar = value => {
-        console.log("SEARCH CAR", value)
+        console.log("SEARCH CAR", value, initialSearchValue)
+        setSearchValue(value)
         props.actionSearchCar(value,props.car.list)
     }
 
@@ -62,9 +61,18 @@ export default function CarListComponent(props){
                     className={classes.textInput}
                 />
             </div>
-            <CarGridView
-                items={props.car?.searchResult}
-            />
+            {
+                props.car?.isLoading ?
+                <div>Loading</div> :
+                props.car?.searchResult?.length ?
+                    <CarGridView
+                        items={props.car?.searchResult}
+                    /> :
+                    <NoCarFound
+                        searchValue={searchValue}
+                    />
+            }
+            
         </div>
     )
 }
